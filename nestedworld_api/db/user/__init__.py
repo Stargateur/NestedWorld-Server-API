@@ -45,6 +45,7 @@ class User(db.Model):
                            doc='User Background')
     level = db.Column(db.Integer, doc="User level", default=0)
 
+    actual_localisation = db.Column(Geography('POINT'), doc='User Actual position')
 
 class PasswordResetRequest(db.Model):
 

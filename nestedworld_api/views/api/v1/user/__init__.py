@@ -3,6 +3,7 @@ from marshmallow.validate import OneOf
 from nestedworld_api.app import ma
 from nestedworld_api.login import login_required, current_session
 from .. import api
+from
 
 user = api.namespace('users')
 
@@ -27,6 +28,8 @@ class User(user.Resource):
         registered_at = ma.DateTime(dump_only=True)
         is_active = ma.Boolean(dump_only=True)
         level = ma.Integer()
+        actual_localisation = PointField(attribute='point')
+        is_connected = ma.Boolean()
 
         @post_dump(pass_many=True)
         def add_envelope(self, data, many):
