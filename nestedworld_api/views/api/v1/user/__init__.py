@@ -67,7 +67,7 @@ class User(user.Resource):
 
 @user.route('/<user_id>')
 class UserId(user.Resource):
-    tags=['users']
+    tags = ['users']
 
     class Schema(User.Schema):
         pass
@@ -86,9 +86,9 @@ class UserId(user.Resource):
 
         user = DbUser.query.get_or_404(user_id)
         conflict = DbUser.query\
-                .filter(DbPlace.id != place_id)\
-                .filter(DbPlace.pseudo == data['pseudo'])\
-                .first()
+                         .filter(DbPlace.id != place_id)\
+                         .filter(DbPlace.pseudo == data['pseudo'])\
+                         .first()
 
         if conflict is not None:
             places.abort(400, 'A user have already the same pseudonyme')
