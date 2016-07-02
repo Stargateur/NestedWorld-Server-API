@@ -13,6 +13,7 @@ class UserFriend(user_friend.Resource):
 
     class FriendResult(ma.Schema):
 
+        #TODO : Maybe use the User.Schema ?
         class User(ma.Schema):
             pseudo = ma.String()
             birth_date = ma.Date()
@@ -21,6 +22,8 @@ class UserFriend(user_friend.Resource):
             avatar = ma.Url()
             background = ma.Url()
             registered_at = ma.DateTime(dump_only=True)
+            level = ma.Integer()
+            is_connected = ma.Boolean()
 
         user = ma.Nested(User, attribute='friend')
 
@@ -54,7 +57,7 @@ class UserFriend(user_friend.Resource):
         friend = User.query.filter(
             User.pseudo == data['pseudo']).first()
         if friend is None:
-            auth.abort(400, message='Friend not found')
+            user.abort(400, message='Friend not found')
 
         user_friend = UserFriend(user=current_session.user, friend=friend)
         db.session.add(user_friend)
