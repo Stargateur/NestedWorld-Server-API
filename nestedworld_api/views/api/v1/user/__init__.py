@@ -2,6 +2,7 @@ from marshmallow import post_dump
 from marshmallow.validate import OneOf
 from nestedworld_api.app import ma
 from nestedworld_api.login import login_required, current_session
+from .geo import PointField
 from .. import api
 
 user = api.namespace('users')
