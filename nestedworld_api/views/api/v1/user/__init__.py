@@ -3,7 +3,6 @@ from marshmallow.validate import OneOf
 from nestedworld_api.app import ma
 from nestedworld_api.login import login_required, current_session
 from .. import api
-from
 
 user = api.namespace('users')
 
