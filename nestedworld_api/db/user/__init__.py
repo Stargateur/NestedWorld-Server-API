@@ -1,5 +1,6 @@
 import arrow
 import sqlalchemy_utils as sau
+from geoalchemy2 import Geography
 from nestedworld_api.db import db
 from nestedworld_api.settings import PASSWORD_SCHEMES
 
