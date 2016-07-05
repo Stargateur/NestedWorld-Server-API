@@ -1,5 +1,6 @@
 import arrow
 import sqlalchemy_utils as sau
+from geoalchemy2 import Geography
 from nestedworld_api.db import db
 from nestedworld_api.settings import PASSWORD_SCHEMES
 
@@ -33,6 +34,9 @@ class User(db.Model):
     is_active = db.Column(
         db.Boolean, nullable=False, default=True, doc='Is the user active?')
 
+    is_connected = db.Column(
+        db.Boolean, nullable=False, default=False, doc="Is the user connected?")
+
     pseudo = db.Column(db.String(32), nullable=False, unique=True,
                        doc='User pseudo')
     city = db.Column(db.String(255), nullable=True, doc='User city')
@@ -45,6 +49,7 @@ class User(db.Model):
                            doc='User Background')
     level = db.Column(db.Integer, doc="User level", default=0)
 
+    actual_localisation = db.Column(Geography('POINT'), doc='User Actual position')
 
 class PasswordResetRequest(db.Model):
 
